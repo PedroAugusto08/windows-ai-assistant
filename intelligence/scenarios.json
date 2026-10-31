@@ -1,0 +1,15 @@
+[
+  {"name":"rascunho amanhã","message":"Tenho que estudar amanhã.","expect":{"intent":"create_task","titleContains":"estudar","dueDate":"tomorrow","priority":null,"dueTime":null},"reset":true},
+  {"name":"referência horário","message":"Coloca para as 19h.","expect":{"intent":"create_task","titleContains":"estudar","dueDate":"tomorrow","dueTime":"19:00","usesPreviousDraft":true}},
+  {"name":"referência prioridade","message":"E prioridade alta.","expect":{"intent":"create_task","titleContains":"estudar","dueDate":"tomorrow","dueTime":"19:00","priority":"high","usesPreviousDraft":true}},
+  {"name":"ambiguidade","message":"Muda aquela tarefa para mais tarde.","expect":{"intent":"clarify","clarification":true},"reset":true},
+  {"name":"exclusão sensível","message":"Exclua a tarefa comprar pão.","expect":{"intent":"delete_task","requiresConfirmation":true,"targetContains":"comprar pão"},"reset":true},
+  {"name":"fora das capacidades","message":"Desligue meu computador daqui a dez minutos.","expect":{"intent":"unsupported"},"reset":true},
+  {"name":"consulta","message":"Quais tarefas de prioridade alta tenho no projeto JARVIS?","expect":{"intent":"query_tasks","priority":"high","project":"JARVIS"},"reset":true},
+  {"name":"painel","message":"Abra o painel de agenda.","expect":{"intent":"open_panel","panel":"agenda"},"reset":true},
+  {"name":"comando direto","message":"Crie a tarefa revisar relatório no projeto Trabalho com prioridade baixa.","expect":{"intent":"create_task","titleContains":"revisar relatório","priority":"low","project":"Trabalho","dueDate":null,"dueTime":null},"reset":true},
+  {"name":"alteração","message":"Mude a tarefa revisar relatório para prioridade alta.","expect":{"intent":"update_task","priority":"high","targetContains":"revisar relatório"},"reset":true},
+  {"name":"conclusão","message":"Conclua a tarefa revisar relatório.","expect":{"intent":"complete_task","targetContains":"revisar relatório"},"reset":true},
+  {"name":"virada de ano","message":"Tenho que estudar depois de amanhã às 08h.","localNow":"2026-12-31T23:30:00-03:00","timeZone":"America/Sao_Paulo","expect":{"intent":"create_task","dueDate":"2027-01-02","dueTime":"08:00"},"reset":true},
+  {"name":"horário ambíguo","message":"Crie a tarefa estudar amanhã à noite.","expect":{"intent":"clarify","clarification":true},"reset":true}
+]

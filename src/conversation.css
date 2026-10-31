@@ -1,0 +1,77 @@
+.shared-conversation { min-width: 0; }
+.conversation-operation { margin: 8px 0; color: var(--command-secondary, var(--muted)); font-size: 12px; overflow-wrap: anywhere; }
+.shared-conversation .message { overflow-wrap: anywhere; }
+.compact-conversation { display: flex; flex-direction: column; padding: 12px; min-height: 200px; max-height: 420px; border: 1px solid var(--command-border, var(--line)); border-radius: 12px; background: var(--command-surface, var(--panel)); }
+.compact-conversation .conversation-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.compact-conversation h2 { font-size: 18px; margin: 0; }
+.compact-conversation .conversation-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.compact-conversation .conversation-meta label { display: flex; align-items: center; gap: 4px; font-size: 12px; }
+.compact-conversation .conversation-log { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; min-height: 80px; max-height: 240px; padding: 8px 0; }
+.compact-conversation .message { flex-shrink: 0; max-width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 8px; }
+.compact-conversation .message-author, .compact-conversation .conversation-footnote { color: var(--muted); font: 10px var(--technical-font); }
+.compact-conversation .intelligence-message { font-size: 13px; line-height: 1.5; margin: 4px 0; white-space: pre-wrap; }
+.compact-conversation .conversation-approval { display: flex; flex-wrap: wrap; gap: 8px; }
+.compact-conversation button { min-height: 40px; }
+.assistant-conversation-dock { position: sticky; bottom: 0; z-index: 2; background: #080f17; padding: 8px 0; }
+.assistant-conversation-dock form { display: flex; gap: 8px; }
+.assistant-conversation-dock input { min-width: 0; flex: 1; min-height: 44px; padding: 8px; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+.assistant-conversation-dock button { min-height: 44px; }
+.assistant-conversation-dock p { font-size: 12px; color: var(--muted); margin: 8px 0 0; overflow-wrap: anywhere; max-height: 60px; overflow-y: auto; }
+.assistant-chat-open .core-position { display: none; }
+.assistant-chat-open .core-workspace { display: block; min-height: 0; }
+.assistant-chat-open .demo-panel { position: static; opacity: 1; transform: none; pointer-events: auto; width: auto; margin-top: 0; }
+.assistant-chat-open .demo-console { display: none; }
+
+/* A conversa substitui o instrumento: histórico e revisão rolam juntos,
+   enquanto entrada e saída completa continuam no fluxo do viewport. */
+.assistant:has(.assistant-chat-open) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100dvh;
+  padding: 12px;
+  overflow: hidden;
+}
+.assistant:has(.assistant-chat-open) > header { flex: 0 0 auto; gap: 8px; flex-wrap: nowrap; }
+.assistant:has(.assistant-chat-open) .brand-mark { padding: 4px 8px; }
+.assistant:has(.assistant-chat-open) .brand small { display: none; }
+.assistant:has(.assistant-chat-open) > .notice,
+.assistant:has(.assistant-chat-open) > .runtime-status,
+.assistant:has(.assistant-chat-open) > .panels,
+.assistant-chat-open > .workspace-heading,
+.assistant-chat-open > .assistant-task-controls { display: none; }
+.assistant .assistant-chat-open { display: flex; flex-direction: column; flex: 1; gap: 8px; min-height: 0; }
+.assistant .assistant-chat-open .core-workspace { flex: 1; min-height: 0; overflow: hidden; }
+.assistant .assistant-chat-open .demo-panel { padding: 0; height: 100%; }
+.assistant-chat-open .compact-conversation { display: grid; grid-template-columns: minmax(0, 1fr) 40px; grid-template-rows: auto auto minmax(0, 1fr); gap: 4px 8px; height: 100%; min-height: 0; max-height: none; padding: 8px; }
+.assistant-chat-open .compact-conversation .conversation-meta { grid-area: 1 / 1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 0; }
+.assistant-chat-open .compact-conversation .conversation-meta label { font-size: 11px; }
+.assistant-chat-open .compact-conversation .conversation-meta .text-action { padding-inline: 8px; }
+.assistant-chat-open .compact-conversation .conversation-log { grid-area: 3 / 1 / 4 / 3; min-height: 0; max-height: none; overflow-y: auto; margin: 0; padding: 4px 0; }
+.assistant-chat-open .conversation-heading { display: contents; }
+.assistant-chat-open .conversation-heading > div { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.assistant-chat-open .conversation-heading > .panel-close { grid-area: 1 / 2; min-width: 40px; }
+.assistant-chat-open .conversation-operation { grid-area: 2 / 1 / 3 / 3; margin: 0; line-height: 1.4; }
+.assistant-chat-open .compact-conversation .conversation-footnote { display: none; }
+.assistant-chat-open .assistant-conversation-dock { position: static; flex: 0 0 auto; padding: 0; }
+.assistant-chat-open .assistant-conversation-dock p { max-height: 40px; margin-top: 4px; line-height: 1.5; }
+.assistant:has(.assistant-chat-open) > footer { flex: 0 0 auto; margin-top: 0; padding-top: 4px; gap: 8px; flex-wrap: nowrap; }
+.assistant:has(.assistant-chat-open) > footer > span { min-width: 0; font-size: 8px; }
+.assistant:has(.assistant-chat-open) > footer .exit { padding-inline: 8px; }
+
+@media (max-height: 480px) {
+  .assistant:has(.assistant-chat-open) > header { display: none; }
+  .assistant .assistant-chat-open { margin-top: 0; }
+}
+
+/* Provenance belongs to each response, including the compact shared log. */
+.shared-conversation .message-provenance { font: 11px/1.4 var(--technical-font); color: var(--command-secondary, var(--muted)); margin: 4px 0; }
+.assistant:has(.assistant-chat-open) { gap: 4px; padding: 8px; }
+.assistant:has(.assistant-chat-open) > .delegation-panel > summary { min-height: 40px; padding: 8px; }
+.assistant-chat-open .compact-conversation .conversation-meta { padding: 0; }
+.assistant-chat-open .compact-conversation { grid-template-rows: 40px auto minmax(0, 1fr); padding-block: 4px; }
+.assistant-chat-open .conversation-heading > .panel-close { height: 40px; align-self: start; }
+.assistant-chat-open .assistant-conversation-dock form,
+.assistant-chat-open .assistant-conversation-dock input,
+.assistant-chat-open .assistant-conversation-dock button { height: 44px; }
+.assistant .assistant-chat-open { gap: 4px; }

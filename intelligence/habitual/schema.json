@@ -1,0 +1,261 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "capability": {
+      "type": "string",
+      "enum": [
+        "task",
+        "browser_search",
+        "weather",
+        "research",
+        "clarify",
+        "conversation",
+        "plan"
+      ]
+    },
+    "task": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "intent": {
+          "type": "string",
+          "enum": [
+            "create_task",
+            "query_tasks",
+            "update_task",
+            "complete_task",
+            "delete_task",
+            "open_panel",
+            "conversation",
+            "clarify",
+            "unsupported",
+            "accept_suggestion",
+            "decline_suggestion"
+          ]
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "priority": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "low",
+                "normal",
+                "high",
+                null
+              ]
+            },
+            "project": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "dueDate": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Data local YYYY-MM-DD, nunca UTC."
+            },
+            "dueTime": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Horário local HH:mm."
+            },
+            "target": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Referência textual explícita a tarefa existente; nunca ID inventado."
+            },
+            "panel": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "tasks",
+                "agenda",
+                "chat",
+                "system",
+                null
+              ]
+            },
+            "status": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pending",
+                "completed",
+                "all",
+                "overdue",
+                null
+              ]
+            },
+            "queryPeriod": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "today",
+                "tomorrow",
+                "this_week",
+                "next_week",
+                "week_of_date",
+                null
+              ],
+              "description": "Período relativo ou week_of_date com dueDate como data de referência; semana de segunda a domingo."
+            },
+            "titleSuffix": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Somente em update_task: informação a acrescentar ao título local, sem reconstruí-lo ou mudar projeto."
+            },
+            "restoreFields": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string",
+                "enum": [
+                  "title",
+                  "project",
+                  "priority",
+                  "dueDate",
+                  "dueTime"
+                ]
+              },
+              "description": "Somente em update_task: campos explicitamente pedidos para restaurar da última edição local. Nunca retornar valores anteriores inventados."
+            }
+          },
+          "required": [
+            "title",
+            "priority",
+            "project",
+            "dueDate",
+            "dueTime",
+            "target",
+            "panel",
+            "status",
+            "queryPeriod",
+            "titleSuffix",
+            "restoreFields"
+          ]
+        },
+        "reply": {
+          "type": "string"
+        },
+        "clarification": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "requiresConfirmation": {
+          "type": "boolean"
+        },
+        "usesPreviousDraft": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "intent",
+        "parameters",
+        "reply",
+        "clarification",
+        "requiresConfirmation",
+        "usesPreviousDraft"
+      ]
+    },
+    "query": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "city": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "usesCityContext": {
+      "type": "boolean"
+    },
+    "question": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "executionIntent": {
+      "type": "string",
+      "enum": [
+        "execute_now",
+        "deferred",
+        "non_executive",
+        "cancel"
+      ],
+      "description": "Intenção da mensagem completa; capacidade escolhida não concede autoridade. Condição ou confirmação futura é deferred."
+    },
+    "answer": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Resposta geral sem alegar efeitos, consulta a ferramentas ou fontes atuais."
+    },
+    "planTargets": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "De 1 a 20 referências explícitas a tarefas a concluir, na ordem pedida. Nunca inventar IDs."
+    }
+  },
+  "required": [
+    "capability",
+    "task",
+    "query",
+    "city",
+    "date",
+    "usesCityContext",
+    "question",
+    "executionIntent",
+    "answer",
+    "planTargets"
+  ]
+}

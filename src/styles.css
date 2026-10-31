@@ -1,0 +1,82 @@
+:root {
+  font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
+  color: #e1edf4;
+  background: #080f17;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  --panel: #0d1823;
+  --line: rgba(151, 194, 218, .14);
+  --muted: #9bb0bf;
+  --tertiary: #8197a7;
+  --cyan: #5bdaed;
+  --control: #112432;
+  --core-cyan: #64e4f5;
+  --core-electric: #318ad5;
+  --core-ice: #d4faff;
+  --core-trace: #254b60;
+  --core-casing: #101e2a;
+  --core-focus: #91edfa;
+  --radius-control: 8px;
+  --radius-panel: 12px;
+  --motion-enter: cubic-bezier(.23, 1, .32, 1);
+  --technical-font: "Cascadia Code", Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button {
+  font: inherit; color: inherit; min-height: 44px; padding: 10px 16px;
+  border: 1px solid var(--line); border-radius: var(--radius-control);
+  background: var(--control); cursor: pointer;
+  transition: transform 140ms var(--motion-enter), opacity 140ms var(--motion-enter);
+}
+button:hover:not(:disabled) { border-color: var(--cyan); color: var(--cyan); }
+button:active:not(:disabled) { transform: scale(.98); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--core-focus); outline-offset: 4px; }
+button:disabled { opacity: .45; cursor: default; }
+main { max-width: 1240px; margin: auto; padding: 24px 32px; }
+header, .brand, .status, footer { display: flex; align-items: center; }
+header, footer { justify-content: space-between; gap: 16px; }
+.brand { gap: 12px; }
+.brand strong { letter-spacing: .22em; font-size: 20px; }
+.brand small { display: block; font-size: 10px; letter-spacing: .17em; color: var(--muted); margin-top: 4px; }
+.brand-mark { border: 1px solid var(--core-trace); color: var(--cyan); padding: 8px 14px; border-radius: 9px; font-weight: 700; }
+.badge { font-size: 11px; letter-spacing: .1em; color: var(--muted); white-space: nowrap; }
+.eyebrow { font-size: 11px; letter-spacing: .16em; color: var(--cyan); margin: 0 0 16px; }
+h1 { text-wrap: balance; }
+p { font-size: 14px; color: var(--muted); line-height: 1.65; max-width: 560px; text-wrap: pretty; }
+h2 { font-size: 22px; font-weight: 500; letter-spacing: -.025em; margin: 0 0 10px; }
+.status { gap: 10px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+.runtime-status { margin: 20px 0 12px; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; }
+time, output { font-variant-numeric: tabular-nums; }
+.separator { color: var(--tertiary); }
+.panels { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; }
+.panel { padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-panel); }
+.panel .eyebrow { margin-bottom: 12px; }
+.panel p:not(.eyebrow) { margin: 8px 0; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.economy-button { display: flex; justify-content: space-between; gap: 20px; width: 100%; margin-top: 16px; text-align: left; }
+.switch { font-size: 12px; color: var(--muted); align-self: center; }
+.economy-button[aria-pressed=true] .switch { color: var(--cyan); }
+footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 10px; letter-spacing: .07em; color: var(--muted); }
+.exit { font-size: 12px; background: transparent; letter-spacing: normal; }
+.notice, .error { border: 1px solid var(--line); padding: 8px 12px; border-radius: var(--radius-control); max-width: none; font-size: 12px; }
+.error { color: #ffb7b7; }
+.quiet *, .quiet *::after { animation: none !important; transition: none !important; }
+.assistant { padding: 20px; }
+.assistant header { flex-wrap: wrap; }
+.assistant .panels { grid-template-columns: 1fr; }
+.assistant .panel { padding: 16px; }
+.assistant .panel .eyebrow { margin-bottom: 10px; }
+.assistant h2 { font-size: 18px; }
+.assistant footer { flex-wrap: wrap; }
+.assistant .brand strong { font-size: 16px; }
+@media (max-width: 680px) {
+  main { padding: 24px 20px; }
+  .panels { grid-template-columns: 1fr; }
+  footer { flex-wrap: wrap; }
+  .badge { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::after { animation: none !important; transition: none !important; }
+}

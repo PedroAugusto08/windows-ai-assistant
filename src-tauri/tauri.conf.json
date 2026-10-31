@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "JARVIS",
+  "version": "0.1.0",
+  "identifier": "com.jarvis.desktop.poc",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "dashboard",
+        "title": "JARVIS — Centro de controle",
+        "width": 1080,
+        "height": 740,
+        "minWidth": 360,
+        "minHeight": 480
+      },
+      {
+        "label": "assistant",
+        "title": "JARVIS — Assistente",
+        "url": "index.html?window=assistant",
+        "width": 360,
+        "height": 420,
+        "minWidth": 280,
+        "minHeight": 360,
+        "visible": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src ipc: http://ipc.localhost",
+      "capabilities": [
+        "desktop"
+      ]
+    }
+  },
+  "bundle": {
+    "active": false,
+    "icon": [
+      "icons/icon.png",
+      "icons/icon.ico"
+    ]
+  }
+}

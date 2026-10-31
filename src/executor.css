@@ -1,0 +1,8 @@
+.executor-panel { flex-shrink: 0; }
+.executor-goal > [role="status"] { font-weight: 600; color: var(--command-accent, var(--accent)); }
+.executor-goal progress { display: block; width: 100%; height: 6px; margin: 12px 0; accent-color: var(--command-accent, var(--accent)); }
+.executor-goal ol { display: grid; gap: 12px; padding-left: 24px; }
+.executor-goal code { font-size: 11px; color: var(--command-secondary, inherit); }
+.executor-attempts { margin: 12px 0; }
+.executor-attempts summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+.executor-attempts li { margin: 8px 0; }

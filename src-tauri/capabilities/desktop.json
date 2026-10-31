@@ -1,0 +1,12 @@
+{
+  "identifier": "desktop",
+  "description": "Eventos locais das duas janelas; gerenciamento fica no Rust.",
+  "windows": [
+    "dashboard",
+    "assistant"
+  ],
+  "permissions": [
+    "core:event:allow-listen",
+    "core:event:allow-unlisten"
+  ]
+}
